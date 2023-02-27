@@ -52,7 +52,7 @@ function App() {
         </div>
         
         {(city.length && validation)?<h1 className='invalid'>Enter Valid City Name</h1>:""}
-        {valid?(
+        {city.length&&valid?(
           <div className='display-report'>
             <p style={{width:"70%", background:"white",textAlign:"center"}}>Weather Details of City: <b>{city}</b></p>
             <p>Current Temparature: <b>{(report.temp-273).toFixed(2)} <sup>o</sup>C</b> </p>
@@ -61,16 +61,14 @@ function App() {
             <p>Sea Level: <b>{report.sea_level}</b></p>
             <p>Ground Level: <b>{report.grnd_level}</b></p>
           </div> 
-        ):(
-          <div className='history'>
-            <h1>Last {history.length} city entries</h1>
-            {history.map((val, i)=>{
-              return(
-                <p key={i}>{val}</p>
-              )
-            })}
-          </div>
-        )}
+        ):(<div className='history'>
+        {history.length?<h1>Last {history.length} city entries</h1>:""}
+        {history.map((val, i)=>{
+          return(
+            <p key={i}>{val}</p>
+          )
+        })}
+      </div>)}
       </div>
     </div>
       
